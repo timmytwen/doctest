@@ -1,3 +1,9 @@
+---
+layout: default
+title: Example
+parent: Home
+nav_order: 1
+---
 ## Example
 An example of running RNAmp is provided in `ExampleData/rnamp_example.R`
 
