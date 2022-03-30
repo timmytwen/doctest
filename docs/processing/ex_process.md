@@ -9,14 +9,18 @@ has_children: true
 
 ### Requirements
 
-- DNA alignment file (.bam)
-- RNA alignment file (.bam)
-- Annotated somatic variants file (.vcf)
-- Annotated germline variants file (.vcf)
-- Copy number data
-- Purity and ploidy information
+Files used in this example and their respective format. The exact formating and structure will differ depending on the tools used for alignment, copy number calling etc., but this example will provide a sample workflow on how to process commonly used bioinformatics file format into a format useable for RNAmp input.
 
-### Example Processing
+
+| File                          | Format        |
+|:------------------------------|:--------------|
+| DNA alignment                 | .bam          |
+| RNA alignment                 | .bam          |
+| Annotated somatic variants    | .vcf          |
+| Annotated germline variants   | .vcf          |
+| Copy number data              | .battenberg   |
+| Purity and ploidy information | .txt          |
+### Processing Steps
 
 1. [Extracting Variant Information](docs\processing\extractvariant.md)
 2. [Mapping Copy Number Data to Variants](docs\processing\mapcn.md)
