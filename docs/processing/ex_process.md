@@ -1,6 +1,7 @@
 ---
 layout: default
 title: Example Input Processing
+parent: Home
 nav_order: 2
 has_children: true
 ---

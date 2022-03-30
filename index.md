@@ -13,5 +13,3 @@ RNAmp calculates cancer cell specific transcriptional output using DNA and RNA s
 ```R
 devtools::install_github('shlienlab/rnamp')
 ```
-[Basic Usage](usage.md)
-[Example Input Processing](docs\processing\ex_process.md)
