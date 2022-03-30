@@ -16,7 +16,7 @@ bcftools view $germline_vcf | bcftools norm -m+ | bcftools view -m2 -M2 -v snps 
     java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar filter "(isHet(GEN[0]) & (GEN[0].GQ > 30))" | \
     bcftools annotate --set-id 'GERMLINE' | bcftools sort -Oz > $filtered_vcf; tabix -p vcf $filtered_vcf
 
-java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar extractFields -s "," $3 ID CHROM POS REF ALT ANN[*].EFFECT > $germline_variants_tsv
+java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar extractFields -s "," $filtered_vcf ID CHROM POS REF ALT ANN[*].EFFECT > $germline_variants_tsv
 
 ```
 
