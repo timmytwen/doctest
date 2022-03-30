@@ -21,6 +21,7 @@ Table of inputs
 | Annotated germline variants   | .vcf          |
 | Copy number data              | .battenberg   |
 | Purity and ploidy information | .txt          |
+
 ### Processing Steps
 
 1. [Extracting Variant Information](extractvariant.md)
