@@ -7,9 +7,12 @@ nav_order: 2
 ---
 # Mapping Copy Number Data to Variants
 
-This examples shows the process of mapping copy number data to each variant, i.e. the major and minor allele counts. Using copy number segments from (battenberg)[https://github.com/Wedge-lab/battenberg]. This segments file can be searched with a binary search:
+This examples shows the process of mapping copy number data to each variant, i.e. the major and minor allele counts. Using [copy number segments](ex_processing_data/example.cnsegments.csv) from [battenberg](https://github.com/Wedge-lab/battenberg). This segments file can be searched with a binary search:
 
 ```python
+#python
+from collections import defaultdict
+import os
 def read_cnv(sample, caveman_in, segments_out):
     '''
     read in caveman copy number file, extract information and reshape for RNAmp
@@ -39,7 +42,7 @@ def read_cnv(sample, caveman_in, segments_out):
                     segments[chromosome].append([interval, cn])
     return segments
 
-def binarySearch(segments, pos):
+def binary_search(segments, pos):
     '''
     searches chromosomal positions in segments dict from read_cnv()
     '''
@@ -50,10 +53,10 @@ def binarySearch(segments, pos):
     # Binary search
     while (low <= high):
 
-        # Find the mid element
+        # Find the mid position
         mid = (low + high) >> 1
 
-        # If element is found
+        # If position is found
         if (pos >= segments[mid][0][0] and pos <= segments[mid][0][1]):
             return mid
 
@@ -69,7 +72,7 @@ def binarySearch(segments, pos):
     return -1
 ```
 
-And this can be mapped to variants as before:
+And this can be mapped to variants filtered and extracted from [extract variants](extractvariant.md):
 
 ```python
 def read_annovar_snp(ssm_file, segments, gender):
@@ -110,7 +113,7 @@ def read_annovar_snp(ssm_file, segments, gender):
                         normcn = 1
 
                     #search cnv for varaint
-                    index = binarySearch(segments[chrom], pos)
+                    index = binary_search(segments[chrom], pos)
 
                     if (index != -1): #if variant is found in cnv
                         majcn = segments[chrom][index][1][0]

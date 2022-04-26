@@ -11,6 +11,7 @@ Examples showing extracting variants from SnpEff annotated VCF and annovar annot
 Germline variants (.vcf) were annotated previously annotated with [SnpEff](http://pcingola.github.io/SnpEff/). The annotated variants (`$germline_vcf`) is filtered for heterozygous SNPs with GQ > 30 in protein coding regions (`$exon_bed`). This is written to a new filtered .vcf from which variant information and annotation is extracted and written to a .tsv (`$germline_variants_tsv`)
 
 ```bash
+#bash
 bcftools view $germline_vcf | bcftools norm -m+ | bcftools view -m2 -M2 -v snps | \
     java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar intervals $exon_bed | \
     java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar filter "(isHet(GEN[0]) & (GEN[0].GQ > 30))" | \
@@ -21,9 +22,10 @@ java -jar /hpf/tools/centos6/snpEff/4.3/SnpSift.jar extractFields -s "," $filter
 ```
 
 ## Variants from ANNOVAR tab-delimited output file
-Variants can be extracted from a .tsv using a simple python script to extract fields of interest and written to a new .tsv:
+Exonic variants identified from [ANNOVAR](https://annovar.openbioinformatics.org/en/latest/) annotations can be extracted from the [.tsv output](ex_processing_data/example.annovar.tsv) using a simple python script to extract fields of interest and written to a new .tsv:
 
 ```python
+#python
 somatic_variants = []
 with open(ssm_file, "r") as snv:
     next(snv) #skip header
@@ -50,7 +52,7 @@ with open("/hpf/largeprojects/adam/projects/timmy/RNAmp/kics/sample_data/variant
         f.write('\t'.join(map(str, i[:-1])) + "\n") #slice last element used for sorting
 ```
 
-### Tools used version info.
+### version info
 [bcftools v1.6](http://www.htslib.org/doc/1.6/bcftools.html)
 
 [SnpSift v4.3](http://pcingola.github.io/SnpEff/)

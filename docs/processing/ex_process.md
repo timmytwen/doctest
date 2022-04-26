@@ -19,11 +19,12 @@ Table of inputs
 | RNA alignment                 | .bam          |
 | Annotated somatic variants    | .txt          |
 | Annotated germline variants   | .vcf          |
-| Copy number data              | .battenberg   |
-| Purity and ploidy information | .txt          |
+| Copy number data              | .csv          |
 
 ### Processing Steps
 
 1. [Extracting Variant Information](extractvariant.md)
 2. [Mapping Copy Number Data to Variants](mapcn.md)
 3. [Allele Specific Read Counting of Variants](asecount.md)
+
+The above 3 steps will produce the correctly formated input files for RNAmp. For an example on running the R tool see: [Example](../../usage.md)
